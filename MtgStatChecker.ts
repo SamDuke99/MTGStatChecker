@@ -60,13 +60,13 @@ interface Card {
     { name: "Lightning Bolt", manaValue: "1" },
     { name: "Lightning Bolt", manaValue: "1" },
     { name: "Lightning Bolt", manaValue: "1" },
-    { name: "Thunderous Wrath", manaValue: "6 (1)" },
-    { name: "Thunderous Wrath", manaValue: "6 (1)" },
-    { name: "Thunderous Wrath", manaValue: "6 (1)" },
-    { name: "Thunderous Wrath", manaValue: "6 (1)" },
+    { name: "Thunderous Wrath", manaValue: "6 (M1)" },
+    { name: "Thunderous Wrath", manaValue: "6 (M1)" },
+    { name: "Thunderous Wrath", manaValue: "6 (M1)" },
+    { name: "Thunderous Wrath", manaValue: "6 (M1)" },
   ];
   
-  function drawOpeningHand(deck, numCards) {
+  function drawOpeningHand(deck: Card[], numCards: number) {
     const shuffledDeck = [...deck];
     const openingHand = [];
     const handSize = Math.min(numCards, shuffledDeck.length);
@@ -80,11 +80,11 @@ interface Card {
     return openingHand;
   }
   
-  function countOpeningHandsContainingCard(openingHands, targetCardName) {
+  function countOpeningHandsContainingCard(openingHands: any[][], targetCardName: string) {
     let count = 0;
   
     for (const hand of openingHands) {
-      const cardsInHand = hand.map((card) => card.name);
+      const cardsInHand = hand.map((card: { name: any; }) => card.name);
       if (cardsInHand.indexOf(targetCardName) !== -1) {
         count++;
       }
@@ -93,7 +93,7 @@ interface Card {
     return count;
   }
   
-  function countCardOccurrences(deck, targetCardName) {
+  function countCardOccurrences(deck: any, targetCardName: string) {
     let count = 0;
     for (const card of deck) {
       if (card.name === targetCardName) {
@@ -103,7 +103,7 @@ interface Card {
     return count;
   }
   
-  function calculateProbabilityAfterDraws(deck, numDraws) {
+  function calculateProbabilityAfterDraws(deck: any[], numDraws: number) {
     let remainingCardCount = countCardOccurrences(deck, "Thunderous Wrath");
     let probability = 0;
   
@@ -118,7 +118,7 @@ interface Card {
     return probability;
   }
   
-  function calculateOddsOfDrawingCardAfterMulligan(deck, targetCardName, numDraws, numMulligans) {
+  function calculateOddsOfDrawingCardAfterMulligan(deck: string | any[], targetCardName: string, numDraws: number, numMulligans: number) {
     let totalCards = deck.length;
     let remainingCardCount = countCardOccurrences(deck, targetCardName);
     let probability = 0;
