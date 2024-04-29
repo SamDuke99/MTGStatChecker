@@ -1,4 +1,5 @@
 # MTGStatChecker
+A simple application to check the probability of different parts of a Magic: The Gathering Deck. In this case 'Modern Burn'.
 
 **Usage**
 The simulator calculates the probability based on the provided parameters. You can adjust the simulation settings and target card in the index.js file.
